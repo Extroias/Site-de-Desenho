@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'DrawingFeed/HomePage.css' %}">
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+</head>
+<body style="display: flex;">
+    <div id="menu">
+        <div style="display: flex; width: 25%;">
+        </div>
+        <div style="display: flex; width: 50%;">
+
+        </div>
+        <div style="display: flex; width: 25%;">
+            <form id="login" hx-boost="true" method="post">
+                {% csrf_token %}
+                <input type="text" required name="nome" minlength="5" maxlength="20" pattern="^\w+$">
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'DrawingFeed/Drawing.css' %}">
+</head>
+<body style="display: flex;">
+    <div id="menu">
+        <div style="display: flex; width: 25%;">
+            <a class="button" href="{% url 'HomePage' %}?nome={{nome}}">
+                Return to List
+            </a>
+        </div>
+        <div style="display: flex; width: 50%; justify-content: center;">
+            <button id="white" class="color-sel white"></button>
+            <button id="black" class="color-sel black"></button>
+            <button id="green" class="color-sel green"></button>
+            <button id="red" class="color-sel red"> </button>
+            <button id="yellow" class="color-sel yellow"></button>
+            <button id="magenta" class="color-sel magenta"></button>
+            <button id="blue" class="color-sel blue"></button>
+            <button id="cyan" class="color-sel cyan"></button>
+        </div>
+        <div style="display: flex;width: 25%; justify-content: right; padding-right: 30px;">
+            <input type="range" min="1" max="20" value="4" class="slider" id="BrushSize">
+        </div>
+    </div>
+    <div id="space" style="display: flex; justify-content: center; align-items: center; height: 100%; background-color: gray; overflow: auto;">
+        <canvas id="Canvas" style="background-color: white; width: {{ x }}px; height: {{ y }}px" width="{{ x }}px" height="{{ y }}px">
+
+        </canvas>
+    </div>
+    <button class="button" id="save">
+        Salvar
+    </button>
+    <script>
+    var csrftoken = "{{ csrf_token }}";
+    var artist = "{{nome}}";
+    var obra = "{{obra}}";
+    </script>
+    <script src="{% static 'DrawingFeed/Drawing.js' %}"></script>
+</body>
+</html>
