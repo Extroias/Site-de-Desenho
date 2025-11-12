@@ -1,1 +1,1 @@
-Segundo Projeto de Site do Codelab, nesse projeto tive que implementar um simples site utilizando as funcionalidades do HTMX e Django.
+Segundo Projeto de Site do Codelab, nesse projeto tive que implementar um simples site utilizando as funcionalidades do HTMX e Django. Depende tanto do Django, quanto do Pillow(para processamento de Imagem).
