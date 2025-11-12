@@ -1,0 +1,19 @@
+<div hx-get="Scroll?page={{ page|add:'1'}}"
+    hx-trigger="intersect once"
+    hx-swap="beforeend">
+</div>
+{% for drawing in drawings %}
+<div class="background">
+    <div class="header">
+        <div style="display: flex; padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
+           <h2 style="font-size: 0.8rem; line-height: 0.3">Autor:{{drawing.artist.name}}</h2>
+        </div>
+        <div style="display: flex; padding-left: 10px; margin-top: 5px; margin-bottom: 5px;">
+            <h2 style="font-size: 0.8rem; line-height: 0.3;">Obra:{{drawing.name}}</h2>
+        </div>
+    </div>
+    <div class="container">
+        <img style="background-color: white;" src="{{drawing.image.url}}">
+    </div>
+</div>
+{% endfor %}

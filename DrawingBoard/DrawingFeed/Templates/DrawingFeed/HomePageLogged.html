@@ -47,7 +47,24 @@
 
         </div>
         <div style="display: flex; width: 25%;">
-            <h2>Boas Vindas, {{ nome }}!</h2>
+            <div>
+            <h2 style="font-size: 1rem; color: white; margin: 0px;">Boas Vindas, {{ nome }}!</h2>
+            <div style="display: flex;">
+                <p class="changer" hx-trigger="click" hx-put="/?nome={{ nome }}" 
+                hx-prompt="Digite o seu novo nome"
+                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-target="closest body">Mudar Nome</p>
+                <p class="changer" hx-trigger="click" hx-delete="/?nome={{ nome }}" 
+                hx-confirm="Tem certeza que você quer deletar a sua conta? Todos os seus desenhos também serão deletados!"
+                hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                hx-target="closest body">Excluir a Conta</p>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div style="overflow-y: auto;" hx-target="this">
+        <div hx-get="/Scroll?page=1" hx-trigger="load" hx-target="this" hx-swap="outerHTML">
         </div>
     </div>
 </body>

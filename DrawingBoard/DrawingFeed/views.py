@@ -4,6 +4,7 @@ from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from .models import Artist, Drawing
 
 def Draw(request : HttpRequest):
@@ -37,9 +38,25 @@ def HomePage(request : HttpRequest):
         nome = request.POST["nome"]
         art,created = Artist.objects.get_or_create(name=nome)
         art.save()
-        return render(request, "DrawingFeed/HomePageLogged.html", {"nome": nome,})
+        return render(request, "DrawingFeed/HomePageLogged.html", {"nome": nome})
     elif(request.method == "GET"):
         nome = request.GET.get("nome")
-        if(nome == None): return render(request, "DrawingFeed/HomePage.html")
-        else: return render(request, "DrawingFeed/HomePageLogged.html", {"nome": nome,})
-    else: return render(request, "DrawingFeed/HomePage.html")
+        if(nome != None): return render(request, "DrawingFeed/HomePageLogged.html", {"nome": nome})
+    elif(request.method == "PUT"):
+        nome = request.GET.get("nome")
+        novonome = request.headers["HX-Prompt"]
+        art = Artist.objects.get(name=nome)
+        art.name = novonome
+        art.save()
+        return render(request, "DrawingFeed/HomePageLogged.html", {"nome": novonome})
+    elif(request.method == "DELETE"):
+        nome = request.GET.get("nome")
+        Artist.objects.get(name=nome).delete()
+    return render(request, "DrawingFeed/HomePage.html")
+
+def Scroll(request : HttpRequest):
+    pg = Paginator(Drawing.objects.all(), 2)
+    pgnum = int(request.GET.get("page"))
+    if(pgnum == None or pgnum == pg.num_pages + 1): pgnum = 1
+    return render(request, "DrawingFeed/Scroll.html", {"drawings" : pg.get_page(pgnum),
+                                                       "page": pgnum})
