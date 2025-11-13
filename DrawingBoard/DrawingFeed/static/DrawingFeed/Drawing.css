@@ -25,18 +25,19 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-#save{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-}
-
 #space{
     height: 100%; 
     background-color: gray; 
     overflow: auto;
     position: relative;
+    box-sizing: border-box;
+}
+
+
+#save{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .scrollbutton{

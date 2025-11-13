@@ -1,16 +1,27 @@
-<div hx-get="Scroll?page={{ page|add:'1'}}"
+<div hx-get="Scroll?page={{ page|add:'1'}}&nome={{nome}}"
     hx-trigger="intersect once"
     hx-swap="beforeend">
 </div>
 {% for drawing in drawings %}
-<div class="background">
+<div class="background" id="background">
     <div class="header">
         <div style="display: flex; padding-left: 20px; margin-top: 5px; margin-bottom: 5px;">
            <h2 style="font-size: 0.8rem; line-height: 0.3">Autor:{{drawing.artist.name}}</h2>
         </div>
         <div style="display: flex; padding-left: 10px; margin-top: 5px; margin-bottom: 5px;">
             <h2 style="font-size: 0.8rem; line-height: 0.3;">Obra:{{drawing.name}}</h2>
-        </div>
+        </div> 
+    {% if nome == drawing.artist.name %}
+        <div style="display: flex; margin-top: 5px; margin-bottom: 5px;  margin-left: auto;">
+            <svg class="icon" hx-trigger="click" 
+            hx-delete="/Draw?nome={{nome}}&obra={{drawing.name}}" 
+            hx-confirm="Tem certeza que quer deletar o desenho?" 
+            hx-target="#background"
+            hx-swap="outerHTML"
+            hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+            style="width: 1.3em; height: 1.3em; cursor: pointer;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#ff0000" d="M136.7 5.9L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-8.7-26.1C306.9-7.2 294.7-16 280.9-16L167.1-16c-13.8 0-26 8.8-30.4 21.9zM416 144L32 144 53.1 467.1C54.7 492.4 75.7 512 101 512L347 512c25.3 0 46.3-19.6 47.9-44.9L416 144z"/></svg> 
+        </div> 
+    {% endif %}
     </div>
     <div class="container">
         <img style="background-color: white;" src="{{drawing.image.url}}">

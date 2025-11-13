@@ -8,8 +8,19 @@ const handpath = "M320.5 64C295.2 64 273.3 78.7 262.9 100C255.9 97.4 248.4 96 24
 
 for(let picker of pickers)
 {
-    picker.addEventListener("click", () => {selector.value = picker.id;})
+    picker.addEventListener("click", () => {selector.value = picker.value;})
 }
+
+function CascadeColor(color)
+{
+    for(i=pickers.length-2; i>= 0; i--)
+    {
+        pickers[i+1].value = pickers[i].value;
+        pickers[i+1].style.backgroundColor = pickers[i+1].value;
+    }
+}
+
+selector.addEventListener("change", event=>{CascadeColor(event.target.color)})
 
 let canvas = document.getElementById("Canvas");
 let ctx = canvas.getContext("2d");
@@ -92,4 +103,4 @@ function toggleScroll(){
     }
 }
 
-sc.addEventListener("click", toggleScroll);
+document.getElementById("scroll").addEventListener("click", toggleScroll);

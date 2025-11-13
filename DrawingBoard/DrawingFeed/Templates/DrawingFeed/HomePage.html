@@ -16,7 +16,7 @@
             <form id="login" hx-boost="true" method="post">
                 {% csrf_token %}
                 <p style="display: inline; font-weight: bold;"></p>
-                <input style="height: 5vh; font-size: 1.6rem;" size="7" type="text" required name="nome" minlength="5" maxlength="20" pattern="^\w+$" placeholder="Usuário">
+                <input style="height: 5vh; font-size: 1.6rem;" size="7" type="text" required name="nome" minlength="5" maxlength="12" pattern="^\w+$" placeholder="Usuário">
                 <input style="height: 5.5vh; vertical-align: 4px;" type="submit" value="Login" />
             </form>
         </div>
