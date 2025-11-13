@@ -31,6 +31,26 @@ body {
     overflow: auto;
     position: relative;
     box-sizing: border-box;
+    container-type: scroll-state;
+}
+@container scroll-state(scrollable: x) {
+    #Canvas{
+    left: 0%;
+    transform: translateY(-50%);
+}
+}
+@container scroll-state(scrollable: y) {
+    #Canvas{
+    top: 0%;
+    transform: translateX(-50%);
+}
+}
+@container scroll-state((scrollable: x) and (scrollable: y)) {
+    #Canvas{
+    top: 0%;
+    left: 0%;
+    transform: none;
+    }
 }
 
 
